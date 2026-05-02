@@ -1,0 +1,16 @@
+{
+  "name": "postman-api-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Postman collection + Newman CLI for JSONPlaceholder API checks",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "newman run QA-Automation-Practice.postman_collection.json -e QA-Automation-Practice.postman_environment.json --reporters cli --timeout-request 20000",
+    "test:verbose": "newman run QA-Automation-Practice.postman_collection.json -e QA-Automation-Practice.postman_environment.json --reporters cli --verbose --timeout-request 20000"
+  },
+  "devDependencies": {
+    "newman": "^6.2.1"
+  }
+}

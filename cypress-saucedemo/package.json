@@ -1,0 +1,16 @@
+{
+  "name": "cypress-saucedemo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cypress E2E tests for SauceDemo (Swag Labs)",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "cypress run",
+    "cy:open": "cypress open"
+  },
+  "devDependencies": {
+    "cypress": "14.5.4"
+  }
+}
