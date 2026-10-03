@@ -16,15 +16,19 @@ class CheckoutPage:
         self.wait = WebDriverWait(driver, timeout)
 
     def fill_shipping_and_continue(self, first: str, last: str, postal: str):
-        self.wait.until(EC.visibility_of_element_located(self.FIRST_NAME)).send_keys(first)
-        self.driver.find_element(*self.LAST_NAME).send_keys(last)
-        self.driver.find_element(*self.POSTAL).send_keys(postal)
+        for locator, value in (
+            (self.FIRST_NAME, first),
+            (self.LAST_NAME, last),
+            (self.POSTAL, postal),
+        ):
+            field = self.wait.until(EC.element_to_be_clickable(locator))
+            field.send_keys(value)
         self.wait.until(EC.element_to_be_clickable(self.CONTINUE)).click()
-        self.wait.until(EC.url_contains("checkout-step-two"))
+        self.wait.until(EC.visibility_of_element_located(self.FINISH))
 
     def finish_order(self):
         self.wait.until(EC.element_to_be_clickable(self.FINISH)).click()
-        self.wait.until(EC.url_contains("checkout-complete"))
+        self.wait.until(EC.visibility_of_element_located(self.COMPLETE_HEADER))
 
     def get_confirmation_header_text(self) -> str:
         self.wait.until(EC.visibility_of_element_located(self.COMPLETE_HEADER))
